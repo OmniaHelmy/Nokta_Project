@@ -23,7 +23,7 @@ namespace Nokta.Controllers
         public ActionResult Index(FormCollection C)
         {
             string Code = "";
-            if (Session["accesstoken"] == null || Session["accesstoken"] == "")
+            if (Session["accesstoken"] == null)
             {
                 Code = C["HiddenToken"].Split('#')[1].Split('=')[1].Split('&')[0];
             }
