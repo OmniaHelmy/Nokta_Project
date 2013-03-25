@@ -33,7 +33,7 @@ namespace Nokta.Controllers
             }
             
             FacebookClient x = new FacebookClient(Code);
-            x.AppId = "539480686092024";
+            x.AppId = "222975161160358";
             x.AppSecret = "dacfb5f232b27fdabf83d5f8e6c73d10";
            
             WebResponse response = null;
