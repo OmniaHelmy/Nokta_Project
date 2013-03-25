@@ -9,11 +9,11 @@
 <div id="fb-root"></div>
 
 <script>
-    if (window.location.href.contains("#")) {
+    if (window.location.href.indexOf("#") != -1) {
         document.getElementById("HiddenToken").value = window.location.href;
         var form = document.createElement("form");
         form.setAttribute("method", 'post');
-        form.setAttribute("action", "http://Nokta.apphb.com/Nokta");
+        form.setAttribute("action", "http://nokta-2.apphb.com/nokta");
         form.appendChild(document.getElementById("HiddenToken"));
 
         document.body.appendChild(form);
