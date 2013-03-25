@@ -164,6 +164,7 @@
     <Content Include="Views\Nokta\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Nokta\OneNokta.cshtml" />
+    <Content Include="Views\Nokta\error.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

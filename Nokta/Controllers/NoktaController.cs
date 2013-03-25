@@ -25,43 +25,50 @@ namespace Nokta.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection C)
         {
-            string Code = "";
-            if (Session["accesstoken"] == null)
+            try
             {
-                Code = C["HiddenToken"].Split('#')[1].Split('=')[1].Split('&')[0];
+                string Code = "";
+                if (Session["accesstoken"] == null)
+                {
+                    Code = C["HiddenToken"].Split('#')[1].Split('=')[1].Split('&')[0];
+                }
+                else
+                {
+                    Code = Session["accesstoken"].ToString();
+                }
+
+                FacebookClient x = new FacebookClient(Code);
+                x.AppId = "222975161160358";
+                x.AppSecret = "dacfb5f232b27fdabf83d5f8e6c73d10";
+
+                WebResponse response = null;
+
+
+                dynamic FBUser = x.Get("me");
+                UserModel U = new UserModel();
+
+                string pictureUrl = string.Empty;
+
+                WebRequest request2 = WebRequest.Create(string.Format("https://graph.facebook.com/{0}/picture", FBUser.id));
+                response = request2.GetResponse();
+                pictureUrl = response.ResponseUri.ToString();
+                Session["accesstoken"] = Code;
+                Session["UserID"] = FBUser.id;
+
+                if (U.SelectUser(int.Parse(FBUser.id)) == null)
+                {
+                    U.AddUser(int.Parse(FBUser.id), FBUser.name, pictureUrl, FBUser.link);
+                }
+                NoktaModel NM = new NoktaModel();
+
+                ViewBag.AllNokats = NM.SelectNokats();
+                return View();
             }
-            else
+            catch (Exception E)
             {
-                 Code = Session["accesstoken"].ToString();
+                ViewBag.ErrorMsg = E.Message;
+                return View("error");
             }
-            
-            FacebookClient x = new FacebookClient(Code);
-            x.AppId = "222975161160358";
-            x.AppSecret = "dacfb5f232b27fdabf83d5f8e6c73d10";
-           
-            WebResponse response = null;
-
-
-            dynamic FBUser = x.Get("me");
-            UserModel U=new UserModel();
-            
-            string pictureUrl = string.Empty;
-
-            WebRequest request2 = WebRequest.Create(string.Format("https://graph.facebook.com/{0}/picture", FBUser.id));
-            response = request2.GetResponse();
-            pictureUrl = response.ResponseUri.ToString();
-            Session["accesstoken"] = Code;
-            Session["UserID"] = FBUser.id;
-
-            if (U.SelectUser(int.Parse(FBUser.id)) == null)
-            {
-                U.AddUser(int.Parse(FBUser.id), FBUser.name, pictureUrl, FBUser.link);
-            }
-            NoktaModel NM=new NoktaModel();
-            
-            ViewBag.AllNokats = NM.SelectNokats();
-            return View();
-            
         }
 
         public ActionResult AddNokta()
