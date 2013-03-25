@@ -78,7 +78,7 @@ namespace Nokta.Controllers
             else
             {
                 NoktaModel nm=new NoktaModel();
-                nm.AddNokta(collection["NoktaText"], );
+                nm.AddNokta(collection["NoktaText"], int.Parse(Session["UserID"].ToString()));
                 return View("Index");
             }
 
