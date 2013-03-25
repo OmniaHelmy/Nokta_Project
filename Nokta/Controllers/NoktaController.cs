@@ -16,6 +16,9 @@ namespace Nokta.Controllers
         // GET: /Nokta/
         public ActionResult Index()
         {
+            NoktaModel NM = new NoktaModel();
+
+            ViewBag.AllNokats = NM.SelectNokats();
             return View();
         }
 
@@ -79,7 +82,7 @@ namespace Nokta.Controllers
             {
                 NoktaModel nm=new NoktaModel();
                 nm.AddNokta(collection["NoktaText"], int.Parse(Session["UserID"].ToString()));
-                return View("Index");
+                return RedirectToAction("Index");
             }
 
 
@@ -94,11 +97,12 @@ namespace Nokta.Controllers
             return View();
         }
 
-        public ActionResult AddComment(int NoktaID, FormCollection FC)
+        [HttpPost]
+        public ActionResult OneNokta(FormCollection aCollection)
         {
             CommentsModel CM = new CommentsModel();
-            CM.AddCommnet(FC["Text_Comments"], int.Parse(Session["UserID"].ToString()), NoktaID);
-            return View("OneNokta", NoktaID);
+            CM.AddCommnet(aCollection["Text_Comments"], int.Parse(Session["UserID"].ToString()), int.Parse(aCollection["NoktaID_Hidden"].ToString()));
+            return RedirectToAction("OneNokta", new { @NoktaID = aCollection["NoktaID_Hidden"] });
         }
 
         public ActionResult GetUser(FormCollection aCollection)

@@ -1,5 +1,4 @@
-﻿@model Raven.Client.Connection.Async.NameAndCount
-
+﻿
 @{
     ViewBag.Title = "OneNokta";
 }
@@ -22,13 +21,17 @@
                 </tr>
             }
         }
+
+     
     }
-    <tr>
-        <form action="AddComment?NoktaID=@ViewBag.ANokta.NoktaId" >
-            
-            <input type="text" id="Text_Comments"/>
-            <input type="submit" value="Add Comment" id="AddCommentButton"/>
-        </form>
-    </tr>
+   
 </table>
+                
+    <br />
+         @using (Html.BeginForm())
+         {
+      <input type="text" name="Text_Comments" />
+      <input type="hidden" name="NoktaID_Hidden" value="@ViewBag.ANokta.NoktaId" />
+      <input type="submit" value="Add Comment" />
+         }
 

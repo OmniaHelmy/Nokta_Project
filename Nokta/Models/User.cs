@@ -14,6 +14,6 @@ namespace Nokta.Models
         public string ProfPic { get; set; }
         public string Profile { get; set; }
         public ICollection<Nokat> UserNokats { get; set; }
-        public ICollection<Comments> UserComments { get; set; }
+        //public ICollection<Comments> UserComments { get; set; }
     }
 }

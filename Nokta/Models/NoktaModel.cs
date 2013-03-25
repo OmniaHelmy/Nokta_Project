@@ -13,6 +13,8 @@ namespace Nokta.Models
         {
             Nokat N = new Nokat();
             N.NoktaPost = post;
+            UserModel U = new UserModel();
+            N.NoktaOwner = U.SelectUser(userId);
             N.UserId = userId;
 
             context.Nokats.Add(N);

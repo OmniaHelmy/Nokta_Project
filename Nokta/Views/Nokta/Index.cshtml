@@ -51,8 +51,7 @@
                     @item.NoktaPost
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new {id = item.NoktaId}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.NoktaId})
+                    <a href="http://nokta-2.apphb.com/nokta/OneNokta?NoktaID=@item.NoktaId">Go to Nokta</a>
                 </td>
             </tr>
         }
