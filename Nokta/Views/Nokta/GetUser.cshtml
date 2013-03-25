@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "GetUser";
+}
+
+
+@<img src="@ViewBag.User.ProfPic"/>
+<h1>@ViewBag.User.Name </h1>
+
+<table>
+
+@{
+    foreach (Nokta.Models.Nokat No in ViewBag.UsersNokats)
+    {
+        <tr>
+            <td>
+                @No.NoktaPost;
+            </td>
+        </tr>
+    }
+}
+
+</table>

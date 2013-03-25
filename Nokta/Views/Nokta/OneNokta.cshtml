@@ -1,0 +1,34 @@
+﻿@model Raven.Client.Connection.Async.NameAndCount
+
+@{
+    ViewBag.Title = "OneNokta";
+}
+
+<h2>OneNokta</h2>
+@ViewBag.ANokta.NoktaPost
+
+<table>
+
+    @{
+        if (ViewBag.Comments != null)
+        {
+            foreach (Nokta.Models.Comments item in ViewBag.Comments)
+            {
+                <tr>
+                    <td>
+                        @item.CommentPost
+                    </td>
+               
+                </tr>
+            }
+        }
+    }
+    <tr>
+        <form action="AddComment?NoktaID=@ViewBag.ANokta.NoktaId" >
+            
+            <input type="text" id="Text_Comments"/>
+            <input type="submit" value="Add Comment" id="AddCommentButton"/>
+        </form>
+    </tr>
+</table>
+

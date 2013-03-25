@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Nokta.Models.Nokat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Hidden("HiddenToken")
+
+<div id="fb-root"></div>
+
+<script>
+    var oauth_url = 'https://www.facebook.com/dialog/oauth/';
+    oauth_url += '?client_id=539480686092024';
+    oauth_url += '&redirect_uri=http://Nokta.apphb.com/Nokta';
+    oauth_url += '&scope=publish_actions';
+    oauth_url += '&response_type=token';
+
+    window.top.location = oauth_url;
+</script>
+

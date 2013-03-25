@@ -1,0 +1,76 @@
+﻿@model Nokta.Models.Nokat
+
+@{
+    ViewBag.Title = "AddNokta";
+}
+
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '539480686092024', // App ID
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+        });
+
+        // Additional initialization code here
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
+            if (response.status === 'connected') {
+                // the user is logged in and has authenticated your
+                // app, and response.authResponse supplies
+                // the user's ID, a valid access token, a signed
+                // request, and the time the access token 
+                // and signed request each expire
+                var uid = response.authResponse.userID;
+                var accessToken = response.authResponse.accessToken;
+                alert("AYWA BA2AAAAAAAAAAAAA!\nUser token=" + accessToken);
+                // TODO: Handle the access token
+                document.getElementById("HiddenToken").value = accessToken;
+
+            } else if (response.status === 'not_authorized') {
+                // the user is logged in to Facebook, 
+                // but has not authenticated your app
+                alert("Fakes asln!");
+            } else {
+                alert("La2 lessa :p");
+                // the user isn't logged in to Facebook.
+            }
+        });
+    };
+
+    // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    } (document));
+</script>
+
+<h2>AddNokta</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Nokat</legend>
+
+        <div class="editor-label">
+            Da7kna
+            @Html.TextBox("NoktaText")
+             @Html.ValidationMessageFor(model => model.NoktaPost)
+            @Html.Hidden("HiddenToken")
+           
+        </div>
+
+        <p>
+            <input type="submit" value="Add" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

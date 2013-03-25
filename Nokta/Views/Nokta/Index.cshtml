@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Nokta.Models.Nokat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Hidden("HiddenToken")
+
+<div id="fb-root"></div>
+
+<script>
+    if (window.location.href.contains("#")) {
+        document.getElementById("HiddenToken").value = window.location.href;
+        var form = document.createElement("form");
+        form.setAttribute("method", 'post');
+        form.setAttribute("action", "http://Nokta.apphb.com/Nokta");
+        form.appendChild(document.getElementById("HiddenToken"));
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+    
+</script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddNokta")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoktaPost)
+        </th>
+        <th></th>
+    </tr>
+
+@{
+    if (ViewBag.AllNokats != null)
+    {
+        foreach (Nokta.Models.Nokat item in ViewBag.AllNokats)
+        {
+            <tr>
+                <td>
+                    @item.NoktaOwner.Name
+                </td>
+                <td>
+                    @item.NoktaPost
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new {id = item.NoktaId}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.NoktaId})
+                </td>
+            </tr>
+        }
+    }
+}
+
+</table>

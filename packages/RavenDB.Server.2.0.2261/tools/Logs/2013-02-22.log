@@ -1,0 +1,21 @@
+time,logger,level,database,message,exception
+2013-02-22 19:08:10.1816,Raven.Database.Impl.DocumentCacher,Info,<system>,"MemoryCache Settings:
+  PhysicalMemoryLimit = 99
+  CacheMemoryLimit    = 2100297728
+  PollingInterval     = 00:02:00",
+2013-02-22 19:08:10.4496,Raven.Storage.Esent.TransactionalStorage,Info,<system>,"Esent Settings:
+  MaxVerPages      = 16384
+  CacheSizeMax     = 262144
+  DatabasePageSize = 4096",
+2013-02-22 19:08:20.5992,Raven.Storage.Esent.StorageActions.DocumentStorageActions,Debug,<system>,Document with key 'Raven/Backup/Status' was not found,
+2013-02-22 19:08:20.9382,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: ReducingExecuter, will wait for additional work",
+2013-02-22 19:08:20.9662,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: IndexingExecuter, will wait for additional work",
+2013-02-22 19:08:21.3212,Raven.Storage.Esent.StorageActions.DocumentStorageActions,Debug,,Document with key 'Raven/Authorization/WindowsSettings' was not found,
+2013-02-22 20:08:21.1201,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: ReducingExecuter, will wait for additional work",
+2013-02-22 20:08:21.1201,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: IndexingExecuter, will wait for additional work",
+2013-02-22 21:08:21.1860,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: ReducingExecuter, will wait for additional work",
+2013-02-22 21:08:21.1860,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: IndexingExecuter, will wait for additional work",
+2013-02-22 22:08:21.2530,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: ReducingExecuter, will wait for additional work",
+2013-02-22 22:08:21.2530,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: IndexingExecuter, will wait for additional work",
+2013-02-22 23:08:21.3209,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: ReducingExecuter, will wait for additional work",
+2013-02-22 23:08:21.3209,Raven.Database.Indexing.WorkContext,Debug,<system>,"No work was found, workerWorkCounter: 0, for: IndexingExecuter, will wait for additional work",
