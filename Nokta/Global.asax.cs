@@ -34,7 +34,7 @@ public static IDocumentStore RavenDBDocumentStore { get; private set; }
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             CreateRavenDBDocumentStore();
-           Database.SetInitializer<NoktaContext>(new DropCreateDatabaseIfModelChanges<NoktaContext>());
+           //Database.SetInitializer<NoktaContext>(new DropCreateDatabaseIfModelChanges<NoktaContext>());
         }
     }
 }
