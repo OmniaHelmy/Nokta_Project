@@ -18,13 +18,7 @@ namespace Nokta
     {
 public static IDocumentStore RavenDBDocumentStore { get; private set; }
   
-    private static void CreateRavenDBDocumentStore()
-    {
-        RavenDBDocumentStore = new DocumentStore
-        {
-            ConnectionStringName = "ravenDB"
-       }.Initialize();
-   }
+
 
         protected void Application_Start()
         {
@@ -33,7 +27,7 @@ public static IDocumentStore RavenDBDocumentStore { get; private set; }
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            CreateRavenDBDocumentStore();
+            
            //Database.SetInitializer<NoktaContext>(new DropCreateDatabaseIfModelChanges<NoktaContext>());
         }
     }
