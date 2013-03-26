@@ -66,6 +66,10 @@ namespace Nokta.Controllers
             }
             catch (Exception E)
             {
+                if (E.Message.Contains("(OAuthException - #190)"))
+                {
+                    return RedirectToAction("../Login");
+                }
                 ViewBag.ErrorMsg = E.Message;
                 return View("error");
             }
@@ -112,14 +116,54 @@ namespace Nokta.Controllers
             return RedirectToAction("OneNokta", new { @NoktaID = aCollection["NoktaID_Hidden"] });
         }
 
-        public ActionResult GetUser(FormCollection aCollection)
+        public ActionResult VoteUp(int NoktaID)
         {
-             FacebookClient x = new FacebookClient(aCollection["HiddenToken"]);
-            dynamic FBUser = x.Get("me");
+            NoktaContext cont = new NoktaContext();
+            Votes ExistingVote = cont.Voteses.FirstOrDefault(x => x.UserId == int.Parse(Session["UserID"].ToString()) && x.NoktaId == NoktaID);
+            if (ExistingVote == null)
+            {
+                Votes V = cont.Voteses.Create();
+                V.NoktaId = NoktaID;
+                V.UserId = int.Parse(Session["UserID"].ToString());
+                V.VoteValue = true;
+                cont.Voteses.Add(V);
+            }
+            else
+            {
+                ExistingVote.VoteValue = true;
+                cont.Entry(ExistingVote).State = System.Data.EntityState.Modified;
+            }
+            cont.SaveChanges();
+            return RedirectToAction("OneNokta", new { @NoktaID = NoktaID});
+        }
+
+        public ActionResult VoteDown(int NoktaID)
+        {
+            NoktaContext cont = new NoktaContext();
+            Votes ExistingVote = cont.Voteses.FirstOrDefault(x => x.UserId == int.Parse(Session["UserID"].ToString()) && x.NoktaId == NoktaID);
+            if (ExistingVote == null)
+            {
+                Votes V = cont.Voteses.Create();
+                V.NoktaId = NoktaID;
+                V.UserId = int.Parse(Session["UserID"].ToString());
+                V.VoteValue = false;
+                cont.Voteses.Add(V);
+            }
+            else
+            {
+                ExistingVote.VoteValue = false;
+                cont.Entry(ExistingVote).State = System.Data.EntityState.Modified;
+            }
+            cont.SaveChanges();
+            return RedirectToAction("OneNokta", new { @NoktaID = NoktaID });
+        }
+
+        public ActionResult GetUser(int ID)
+        {
             UserModel UM = new UserModel();
             NoktaModel NM = new NoktaModel();
-            ViewBag.User = UM.SelectUser(FBUser.ID);
-            ViewBag.UsersNokats = NM.SelectUserNokats(FBUser.ID);
+            ViewBag.User = UM.SelectUser(ID);
+            ViewBag.UsersNokats = NM.SelectUserNokats(ViewBag.User.Id);
             
             return View();
 

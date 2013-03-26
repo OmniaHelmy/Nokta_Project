@@ -16,10 +16,6 @@ namespace Nokta
     // visit http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
-public static IDocumentStore RavenDBDocumentStore { get; private set; }
-  
-
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -28,7 +24,7 @@ public static IDocumentStore RavenDBDocumentStore { get; private set; }
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
-           //Database.SetInitializer<NoktaContext>(new DropCreateDatabaseIfModelChanges<NoktaContext>());
+           Database.SetInitializer<NoktaContext>(new DropCreateDatabaseAlways<NoktaContext>());
         }
     }
 }

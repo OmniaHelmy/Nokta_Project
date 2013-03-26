@@ -970,7 +970,7 @@
         }
     };
     jQuery.ajaxSettings = {
-        "url": 'http://nokta-2.apphb.com',
+        "url": 'http://localhost:38758',
         "type": 'GET',
         "isLocal": false,
         "global": true,

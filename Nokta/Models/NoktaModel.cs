@@ -11,10 +11,9 @@ namespace Nokta.Models
         NoktaContext context=new NoktaContext();
         public void AddNokta(string post, int userId)
         {
-            Nokat N = new Nokat();
+            Nokat N = context.Nokats.Create();
             N.NoktaPost = post;
-            UserModel U = new UserModel();
-            N.NoktaOwner = U.SelectUser(userId);
+            N.NoktaOwner = context.Users.FirstOrDefault(x => x.FBId == userId);
             N.UserId = userId;
 
             context.Nokats.Add(N);
@@ -30,7 +29,7 @@ namespace Nokta.Models
         //select kol l nokats bta3t user mo3yn
         public List<Nokat> SelectUserNokats(int userId)
         {
-            return context.Nokats.Where(x => x.UserId == userId).ToList();
+            return context.Nokats.Where(x => x.NoktaOwner.Id == userId).ToList();
 
         }
         //select nokta wa7da bssssss

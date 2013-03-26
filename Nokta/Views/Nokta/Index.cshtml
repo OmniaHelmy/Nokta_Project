@@ -13,7 +13,7 @@
         document.getElementById("HiddenToken").value = window.location.href;
         var form = document.createElement("form");
         form.setAttribute("method", 'post');
-        form.setAttribute("action", "http://nokta-2.apphb.com/nokta");
+        form.setAttribute("action", "http://localhost:38758/nokta");
         form.appendChild(document.getElementById("HiddenToken"));
 
         document.body.appendChild(form);
@@ -30,10 +30,10 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            Nokta poster
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NoktaPost)
+            Nokta
         </th>
         <th></th>
     </tr>
@@ -45,13 +45,13 @@
         {
             <tr>
                 <td>
-                    @item.NoktaOwner.Name
+                @Html.ActionLink(@item.NoktaOwner.Name, "GetUser", new {ID = @item.NoktaOwner.FBId  })
                 </td>
                 <td>
                     @item.NoktaPost
                 </td>
                 <td>
-                    <a href="http://nokta-2.apphb.com/nokta/OneNokta?NoktaID=@item.NoktaId">Go to Nokta</a>
+                    <a href="http://localhost:38758/nokta/OneNokta?NoktaID=@item.NoktaId">Go to Nokta</a>
                 </td>
             </tr>
         }

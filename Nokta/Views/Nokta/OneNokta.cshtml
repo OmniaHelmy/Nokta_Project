@@ -5,7 +5,8 @@
 
 <h2>OneNokta</h2>
 @ViewBag.ANokta.NoktaPost
-
+@Html.ActionLink("Vote UP", "VoteUp", new { NoktaID = @ViewBag.ANokta.NoktaId })
+@Html.ActionLink("Vote Down", "VoteDown", new { NoktaID = @ViewBag.ANokta.NoktaId })
 <table>
 
     @{

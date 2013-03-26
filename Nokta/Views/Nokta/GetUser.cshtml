@@ -1,23 +1,28 @@
 ﻿
+
 @{
-    ViewBag.Title = "GetUser";
+    ViewBag.Title = "Get User Nokta";
 }
-
-
-<img src="@ViewBag.User.ProfPic"/>
-<h1>@ViewBag.User.Name </h1>
+<img src="@ViewBag.User.ProfPic" style="display: inline"/>
+<h2 style="display: inline">@ViewBag.User.Name's Nokat</h2>
 
 <table>
+<th>Nokta</th>
+    @{
+        if (ViewBag.UsersNokats != null)
+        {
+            foreach (Nokta.Models.Nokat item in ViewBag.UsersNokats)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@item.NoktaPost, "OneNokta", new { NoktaID = @item.NoktaId })
+                    </td>
+               
+                </tr>
+            }
+        }
 
-@{
-    foreach (Nokta.Models.Nokat No in ViewBag.UsersNokats)
-    {
-        <tr>
-            <td>
-                @No.NoktaPost;
-            </td>
-        </tr>
+     
     }
-}
-
+   
 </table>

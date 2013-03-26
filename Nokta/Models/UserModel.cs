@@ -11,13 +11,16 @@ namespace Nokta.Models
 
         public void AddUser(int FbuserId, string UserName,string ImagePath, string ProfilePath)
         {
-            User u = new User();
+            context.Configuration.AutoDetectChangesEnabled = false;
+            
+            User u = context.Users.Create();
             u.FBId = FbuserId;
             u.Name = UserName;
             u.ProfPic = ImagePath;
             u.Profile = ProfilePath;
             
             context.Users.Add(u);
+
             context.SaveChanges();
         }
         public User SelectUser(int UserID)
