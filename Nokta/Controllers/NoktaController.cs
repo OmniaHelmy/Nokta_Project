@@ -105,6 +105,10 @@ namespace Nokta.Controllers
             CommentsModel CM=new CommentsModel();
             ViewBag.ANokta = N.SelectNokta(NoktaID);
             ViewBag.Comments = CM.SelectCommnet(NoktaID);
+
+            NoktaContext c = new NoktaContext();
+            ViewBag.NumberOfVotesUp = c.Voteses.Where(x=>x.NoktaId==NoktaID && x.VoteValue == true).Count();
+            ViewBag.NumberOfVotesDown = c.Voteses.Where(x=>x.NoktaId==NoktaID && x.VoteValue == false).Count();
             return View();
         }
 
@@ -119,7 +123,8 @@ namespace Nokta.Controllers
         public ActionResult VoteUp(int NoktaID)
         {
             NoktaContext cont = new NoktaContext();
-            Votes ExistingVote = cont.Voteses.FirstOrDefault(x => x.UserId == int.Parse(Session["UserID"].ToString()) && x.NoktaId == NoktaID);
+            int uid = int.Parse(Session["UserID"].ToString());
+            Votes ExistingVote = cont.Voteses.FirstOrDefault(x => x.UserId == uid && x.NoktaId == NoktaID);
             if (ExistingVote == null)
             {
                 Votes V = cont.Voteses.Create();
@@ -140,7 +145,8 @@ namespace Nokta.Controllers
         public ActionResult VoteDown(int NoktaID)
         {
             NoktaContext cont = new NoktaContext();
-            Votes ExistingVote = cont.Voteses.FirstOrDefault(x => x.UserId == int.Parse(Session["UserID"].ToString()) && x.NoktaId == NoktaID);
+            int uid = int.Parse(Session["UserID"].ToString());
+            Votes ExistingVote = cont.Voteses.FirstOrDefault(x => x.UserId == uid && x.NoktaId == NoktaID);
             if (ExistingVote == null)
             {
                 Votes V = cont.Voteses.Create();

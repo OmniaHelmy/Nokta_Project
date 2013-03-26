@@ -5,8 +5,14 @@
 
 <h2>OneNokta</h2>
 @ViewBag.ANokta.NoktaPost
-@Html.ActionLink("Vote UP", "VoteUp", new { NoktaID = @ViewBag.ANokta.NoktaId })
-@Html.ActionLink("Vote Down", "VoteDown", new { NoktaID = @ViewBag.ANokta.NoktaId })
+<br />
+<div style="color: Green">Number Of Votes UP: @ViewBag.NumberOfVotesUp</div>
+<div style="color: Red">Number Of Votes Down: @ViewBag.NumberOfVotesDown</div>
+
+
+<div style="color: Green">@Html.ActionLink("Vote UP", "VoteUp", new { NoktaID = @ViewBag.ANokta.NoktaId })</div>
+<div style="color: Red">@Html.ActionLink("Vote Down", "VoteDown", new { NoktaID = @ViewBag.ANokta.NoktaId })</div>
+
 <table>
 
     @{
