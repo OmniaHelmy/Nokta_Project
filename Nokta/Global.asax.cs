@@ -24,7 +24,7 @@ namespace Nokta
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
-           Database.SetInitializer<NoktaContext>(new DropCreateDatabaseAlways<NoktaContext>());
+           //Database.SetInitializer<NoktaContext>(new DropCreateDatabaseAlways<NoktaContext>());
         }
     }
 }
